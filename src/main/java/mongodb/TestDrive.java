@@ -33,36 +33,37 @@ public class TestDrive {
 
         Document project = new Document()
                 .append("$project", new Document()
-                        .append("vacancy", "$items.name")
-                        .append("employer","$items.employer.name")
-                        .append("salary", "$items.salary")
+                                .append("_id", "$items.id")
+                                .append("vacancy", "$items.name")
+                                .append("employer", "$items.employer.name")
+                                .append("salary", "$items.salary")
                 );
 
         Document group = new Document()
                 .append("$group", new Document()
-                        .append("_id", "$items.employer.name")
-                        .append("vacancies", new Document()
-                                .append("$addToSet", "$items.name")
-                        )
+                                .append("_id", "$items.employer.name")
+                                .append("vacancies", new Document()
+                                                .append("$addToSet", "$items.name")
+                                )
                 );
 
         Document filterBySalary = new Document()
                 .append("$match", new Document()
-                        .append("$or", asList(
-                                        new Document("items.salary", null),
-                                        new Document("items.salary.from", new Document()
-                                                .append("$gte", 80000))
+                                .append("$or", asList(
+                                                new Document("items.salary", null),
+                                                new Document("items.salary.from", new Document()
+                                                        .append("$gte", 80000))
+                                        )
                                 )
-                        )
                 );
 
         Document out = new Document()
                 .append("$out", "filteredJobs");
 
-        MongoCursor<Document> cur =  collection.aggregate(asList(unwind, filterBySalary, project, out)).iterator();
+        System.out.println();
+        collection.aggregate(asList(unwind, filterBySalary, project, out)).iterator();
 
         showCur(cur);
-
 
 
 //         *
