@@ -21,10 +21,10 @@ public class HeadHunterAPI {
 
     private static final Logger log = LoggerFactory.getLogger(HeadHunterAPI.class);
 
-    private MongoLocalDB localDB;
+    private Mongo hhVacancies;
 
     private HeadHunterAPI() {
-        localDB = MongoLocalDB.initiateDB("headhunter");
+        hhVacancies = Mongo.initiateDB("headhunter");
     }
 
 
@@ -35,7 +35,7 @@ public class HeadHunterAPI {
     }
 
 
-    public List<Document> getVacancies(String title, String country) {
+    public void getVacanciesAndSave(Mongo mainDatabase, String title, String country) {
 
         HttpURLConnection httpCon = prepareConnection(title, country);
         BufferedReader reader = new BufferedReader(new InputStreamReader(getStreamFrom(httpCon)));
@@ -44,13 +44,13 @@ public class HeadHunterAPI {
             line = reader.readLine();
         } catch (IOException e) {
             log.error(e.getMessage());
-            throw new AssertionError("Can not read from stream!");
+            throw new AssertionError("Could not read from stream!");
         }
 
         Document document = Document.parse(line);
-        localDB.insertDocument(new HHprocessor(), document);
+        hhVacancies.insertDocument(document);
+        hhVacancies.processAndSave(mainDatabase);
 
-        return localDB.request(title, country);
     }
 
 
@@ -88,7 +88,7 @@ public class HeadHunterAPI {
                 break;
         }
         String connectionString = "https://api.hh.ru/vacancies?text=" +
-                titleSplitted[0] + "+" + titleSplitted[1] + "&" +
+                titleSplitted[0] + "+" + titleSplitted[1] +
                 area + "&period=30&per_page=469";
 
         return connectionString;

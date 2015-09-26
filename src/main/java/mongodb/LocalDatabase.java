@@ -2,24 +2,32 @@ package mongodb;
 
 import org.bson.Document;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class LocalDatabase {
 
     private HeadHunterAPI hhAPI;
+    private Mongo vacancies;
 
 
     public LocalDatabase() {
 
+        vacancies = Mongo.initiateDB("collectedVacancies");
         hhAPI = HeadHunterAPI.createConnection();
 
     }
 
 
-    public List<Document> getVacanciesFor(String title, String country) {
+    public void collectDBfor(String title, String country) {
 
-        return hhAPI.getVacancies(title, country);
+        hhAPI.getVacanciesAndSave(vacancies, title, country);
+
+    }
+
+
+    public List<Document> getCollectedVacancies() {
+
+        return vacancies.returnAll();
 
     }
 

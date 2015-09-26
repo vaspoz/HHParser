@@ -5,9 +5,7 @@ import freemarker.template.SimpleHash;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import org.bson.Document;
-import spark.Request;
-import spark.Response;
-import spark.Route;
+import spark.*;
 
 import javax.servlet.http.Cookie;
 import java.io.IOException;
@@ -26,7 +24,8 @@ public class SearcherController {
 
         db = new LocalDatabase();
         cfg = createFreemarkerConfiguration();
-        setPort(8282);
+        setPort(8787);
+        externalStaticFileLocation("src\\main\\resources\\freemarker");
         initializeRouts();
 
     }
@@ -50,7 +49,7 @@ public class SearcherController {
             }
         });
 
-        get(new FreemarkerBaseRoutes("/hello", "entry_template.ftl") {
+        get(new FreemarkerBaseRoutes("/hello", "search_start.html") {
             @Override
             protected void doHandle(Request request, Response response, Writer writer) throws IOException, TemplateException {
                 SimpleHash root = new SimpleHash();
@@ -62,14 +61,13 @@ public class SearcherController {
             }
         });
 
-        post(new FreemarkerBaseRoutes("/hello", "entry_template.ftl") {
+        post(new FreemarkerBaseRoutes("/hello", "search_start.html") {
             @Override
             protected void doHandle(Request request, Response response, Writer writer) throws IOException, TemplateException {
                 String title = request.queryParams("title");
                 String country = request.queryParams("country");
 
-                response.raw().addCookie(new Cookie("title", title));
-                response.raw().addCookie(new Cookie("country", country));
+                db.collectDBfor(title, country);
 
                 response.redirect("/results");
             }
@@ -79,10 +77,7 @@ public class SearcherController {
         get(new FreemarkerBaseRoutes("/results", "search_results.ftl") {
             @Override
             protected void doHandle(Request request, Response response, Writer writer) throws IOException, TemplateException {
-                String title = getFromCookie(request, "title");
-                String country = getFromCookie(request, "country");
-
-                List<Document> vacancies = db.getVacanciesFor(title, country);
+                List<Document> vacancies = db.getCollectedVacancies();
 
                 SimpleHash root = new SimpleHash();
                 root.put("vacancies", vacancies);
