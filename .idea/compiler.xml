@@ -25,6 +25,8 @@
         <module name="HHParser" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel target="1.8" />
+    <bytecodeTargetLevel target="1.8">
+      <module name="HHParser" target="1.7" />
+    </bytecodeTargetLevel>
   </component>
 </project>

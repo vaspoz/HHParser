@@ -68,8 +68,8 @@ public class SearcherController {
                 String title = request.queryParams("title");
                 String country = request.queryParams("country");
 
-                response.raw().addCookie(new Cookie("title1", title));
-                response.raw().addCookie(new Cookie("country1", country));
+                response.raw().addCookie(new Cookie("title", title));
+                response.raw().addCookie(new Cookie("country", country));
 
                 response.redirect("/results");
             }
