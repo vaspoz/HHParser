@@ -25,6 +25,17 @@
             <artifactId>spark-core</artifactId>
             <version>1.1.1</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.googlecode.linkedin-j</groupId>
+            <artifactId>linkedin-j-examples</artifactId>
+            <version>1.0.416</version>
+        </dependency>
+        <dependency>
+            <groupId>com.googlecode.linkedin-j</groupId>
+            <artifactId>linkedin-j-core</artifactId>
+            <version>1.0.416</version>
+        </dependency>
     </dependencies>
 
     <build>

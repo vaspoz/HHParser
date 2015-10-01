@@ -26,7 +26,11 @@
     <orderEntry type="library" name="Maven: org.eclipse.jetty:jetty-xml:9.0.2.v20130417" level="project" />
     <orderEntry type="library" name="Maven: org.eclipse.jetty:jetty-servlet:9.0.2.v20130417" level="project" />
     <orderEntry type="library" name="Maven: org.eclipse.jetty:jetty-security:9.0.2.v20130417" level="project" />
-    <orderEntry type="library" scope="TEST" name="Maven: junit:junit:4.12" level="project" />
-    <orderEntry type="library" scope="TEST" name="Maven: org.hamcrest:hamcrest-core:1.3" level="project" />
+    <orderEntry type="library" name="Maven: com.googlecode.linkedin-j:linkedin-j-examples:1.0.416" level="project" />
+    <orderEntry type="library" name="Maven: oauth.signpost:signpost-core:1.2.1.1" level="project" />
+    <orderEntry type="library" name="Maven: commons-codec:commons-codec:1.3" level="project" />
+    <orderEntry type="library" name="Maven: commons-cli:commons-cli:1.2" level="project" />
+    <orderEntry type="library" name="Maven: net.sf.kxml:kxml2:2.3.0" level="project" />
+    <orderEntry type="library" name="Maven: com.googlecode.linkedin-j:linkedin-j-core:1.0.416" level="project" />
   </component>
 </module>
