@@ -1,27 +1,70 @@
 package mongodb;
 
+import com.google.code.linkedinapi.client.JobsApiClient;
 import com.google.code.linkedinapi.client.LinkedInApiClient;
 import com.google.code.linkedinapi.client.LinkedInApiClientFactory;
+import com.google.code.linkedinapi.client.enumeration.ProfileType;
+import com.google.code.linkedinapi.client.enumeration.SearchParameter;
+import com.google.code.linkedinapi.client.oauth.*;
+import com.google.code.linkedinapi.schema.Job;
+import com.google.code.linkedinapi.schema.Jobs;
 import com.google.code.linkedinapi.schema.Person;
+import com.google.code.linkedinapi.schema.impl.JobImpl;
+
+import java.util.EnumMap;
+import java.util.Map;
+import java.util.Scanner;
 
 public class LinkedinJ {
     public static void main(String[] args) {
         String CONSUMER_KEY = "77o13rztd0g9ow";
         String CONSUMER_SECRET = "ZyKZSwYL5M1z3UQS";
 
-        String ACCESS_TOKEN = "acd851cf-d360-4acd-96da-8c0006e666d3";
-        String TOKEN_SECRET = "6dd484c4-5a65-457d-a365-138d95a10987";
+//        LinkedInOAuthService oauthService = LinkedInOAuthServiceFactory.getInstance().createLinkedInOAuthService(CONSUMER_KEY, CONSUMER_SECRET);
+//        LinkedInRequestToken requestToken = oauthService.getOAuthRequestToken();
+//        String authUrl = requestToken.getAuthorizationUrl();
+//
+//        System.out.println("Copy below link in web browser to authorize. Copy the PIN obtained\n" + authUrl);
+//        System.out.println("Enter the PIN code:");
+//
+//        String pin;
+//
+//
+//        Scanner s = new Scanner(System.in);
+//        pin = s.next();
+//        System.out.println("Fetching access token from LinkedIn...");
+//
+//        LinkedInAccessToken accessToken = oauthService.getOAuthAccessToken(requestToken, pin);
+//        System.out.println("Access token : " + accessToken.getToken());
+//        System.out.println("Token secret : " + accessToken.getTokenSecret());
+//        final LinkedInApiClientFactory factory = LinkedInApiClientFactory.newInstance(CONSUMER_KEY, CONSUMER_SECRET);
+//        final LinkedInApiClient client = factory.createLinkedInApiClient(accessToken);
+//
+
+        String ACCESS_TOKEN = "5bad4550-e624-4c3b-8cb0-f152c2d0e4cc";
+        String TOKEN_SECRET = "4cc47e13-a2a2-46f1-8e41-59f11ce68394";
 
         LinkedInApiClientFactory factory = LinkedInApiClientFactory.newInstance(CONSUMER_KEY, CONSUMER_SECRET);
         LinkedInApiClient client = factory.createLinkedInApiClient(ACCESS_TOKEN, TOKEN_SECRET);
 
 
-        Person profile = client.getProfileById("132");
+        JobsApiClient jobsApiClient = factory.createJobsApiClient(ACCESS_TOKEN, TOKEN_SECRET);
+
+        Person profile = client.getProfileForCurrentUser();
         System.out.println("Name:" + profile.getFirstName() + " " + profile.getLastName());
         System.out.println("Headline:" + profile.getHeadline());
         System.out.println("Summary:" + profile.getSummary());
-        System.out.println("Industry:" + profile.getIndustry());
-        System.out.println("Picture:" + profile.getPictureUrl());
+
+        Map<SearchParameter, String> searchParameters = new EnumMap<>(SearchParameter.class);
+        searchParameters.put(SearchParameter.KEYWORDS, "Java developer");
+
+        Jobs jobs = client.searchJobs(searchParameters);
+        System.out.println("Total search result: " + jobs.getCount());
+        for (Job job : jobs.getJobList()) {
+            System.out.println("Description: " + job.getDescriptionSnippet());
+            System.out.println("Company: " + job.getCompany().getName());
+            System.out.println();
+        }
 
 //        LinkedInOAuthService oauthService;
 //        LinkedInRequestToken requestToken;
