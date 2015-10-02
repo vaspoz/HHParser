@@ -3,17 +3,13 @@ package mongodb;
 import com.google.code.linkedinapi.client.JobsApiClient;
 import com.google.code.linkedinapi.client.LinkedInApiClient;
 import com.google.code.linkedinapi.client.LinkedInApiClientFactory;
-import com.google.code.linkedinapi.client.enumeration.ProfileType;
 import com.google.code.linkedinapi.client.enumeration.SearchParameter;
-import com.google.code.linkedinapi.client.oauth.*;
 import com.google.code.linkedinapi.schema.Job;
 import com.google.code.linkedinapi.schema.Jobs;
 import com.google.code.linkedinapi.schema.Person;
-import com.google.code.linkedinapi.schema.impl.JobImpl;
 
 import java.util.EnumMap;
 import java.util.Map;
-import java.util.Scanner;
 
 public class LinkedinJ {
     public static void main(String[] args) {
@@ -119,3 +115,4 @@ public class LinkedinJ {
 
     }
 }
+
