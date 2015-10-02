@@ -48,6 +48,13 @@ public class Mongo {
     }
 
 
+    public List<Document> findAll(Document document) {
+
+        return collection.find(document).into(new ArrayList<Document>());
+
+    }
+
+
     public List<Document> request() {
 
         return stub();

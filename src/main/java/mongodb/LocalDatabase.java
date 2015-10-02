@@ -12,7 +12,7 @@ public class LocalDatabase {
 
     public LocalDatabase() {
 
-        vacancies = Mongo.initiateDB("collectedVacancies");
+        vacancies = Mongo.initiateDB("vacancies");
         hhAPI = HeadHunterAPI.createConnection();
 
     }

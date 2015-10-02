@@ -20,28 +20,57 @@ public class TestDrive {
         String title = "&job-title=Java+Developer";
         String country = "&country-code=ru";
         String company = "&company=Oracle";
-        String count = "&count=2";
-        String start = "&start=1";
-        String facet = "&facets=";
+        String count = "&count=1";
+        String start = "&start=";
+        String facet = "";
         String format = "&format=json";
 
+        URL url2 = new URL("https://api.linkedin.com/v1/" +
+                "job-search:(jobs:(" +
+                "id,customer-job-code,active,posting-date,expiration-date,posting-timestamp,expiration-timestamp," +
+                "company:(" +
+                "id,name)," +
+                "position:(" +
+                "title,location,job-functions,industries,job-type,experience-level)," +
+                "skills-and-experience,description-snippet,description,salary," +
+                "job-poster:(" +
+                "id,first-name,last-name,headline),referral-bonus,site-job-url,location-description))?"
+                + token +
+                "&distance=10&" +
+                "job-title=product&" +
+                "facets=company,location&" +
+                "facet=industry,6&" +
+                "facet=company,1288&" +
+                "sort=DA&format=json");
+        showRequest(url2);
+        int listCount = 0;
+        URL url;
 
-        URL url = new URL("https://api.linkedin.com/v1/job-search?" + token + title + count + start + facet + format);
+        for (int i = 0; i <100; i++) {
+            listCount = i;
+            start = "&start=" + listCount;
+            url = new URL("https://api.linkedin.com/v1/job-search:(jobs:(id,company,position))?" + token + title + count + start + facet + format);
 //        URL url = new URL("https://api.linkedin.com/v1/job-search?" + token + title + count + start + country + facet + format);
 //        URL url = new URL("https://api.linkedin.com/v1/jobs/74331664:(company,position,skills-and-experience,description-snippet,salary)?" + token + format);
 //        URL url = new URL("https://api.hh.ru/vacancies?text=Java+Developer&period=30&area=2&per_page=469");
+            showRequest(url);
+
+        }
+        start = "&start=10";
+        url = new URL("https://api.linkedin.com/v1/job-search:(jobs:(id,company,position))?" + token + title + count + start + facet + format);
         showRequest(url);
 
-        start = "&start=10";
-        url = new URL("https://api.linkedin.com/v1/job-search?" + token + title + count + start + facet + format);
+        start = "&start=20";
+        url = new URL("https://api.linkedin.com/v1/job-search:(jobs:(id,company,position))?" + token + title + count + start + facet + format);
         showRequest(url);
 
-        start = "&start=10";
-        url = new URL("https://api.linkedin.com/v1/job-search?" + token + title + count + start + facet + format);
+        start = "&start=30";
+        url = new URL("https://api.linkedin.com/v1/job-search:(jobs:(id,company,position))?" + token + title + count + start + facet + format);
         showRequest(url);
 
-        start = "&start=10";
-        url = new URL("https://api.linkedin.com/v1/job-search?" + token + title + count + start + facet + format);
+
+        start = "&start=40";
+        url = new URL("https://api.linkedin.com/v1/job-search:(jobs:(id,company,position))?" + token + title + count + start + facet + format);
         showRequest(url);
 
 //        Document document = Document.parse(line);
@@ -212,3 +241,60 @@ public class TestDrive {
 //
 //    }
 }
+
+
+/*
+C:\JAVA\32\jdk1.8.0_31\bin\java -Didea.launcher.port=7546 "-Didea.launcher.bin.path=C:\Program Files (x86)\JetBrains\IntelliJ IDEA Community Edition 14.1.4\bin" -Dfile.encoding=UTF-8 -classpath "C:\JAVA\32\jdk1.8.0_31\jre\lib\charsets.jar;C:\JAVA\32\jdk1.8.0_31\jre\lib\deploy.jar;C:\JAVA\32\jdk1.8.0_31\jre\lib\javaws.jar;C:\JAVA\32\jdk1.8.0_31\jre\lib\jce.jar;C:\JAVA\32\jdk1.8.0_31\jre\lib\jfr.jar;C:\JAVA\32\jdk1.8.0_31\jre\lib\jfxswt.jar;C:\JAVA\32\jdk1.8.0_31\jre\lib\jsse.jar;C:\JAVA\32\jdk1.8.0_31\jre\lib\management-agent.jar;C:\JAVA\32\jdk1.8.0_31\jre\lib\plugin.jar;C:\JAVA\32\jdk1.8.0_31\jre\lib\resources.jar;C:\JAVA\32\jdk1.8.0_31\jre\lib\rt.jar;C:\JAVA\32\jdk1.8.0_31\jre\lib\ext\access-bridge-32.jar;C:\JAVA\32\jdk1.8.0_31\jre\lib\ext\cldrdata.jar;C:\JAVA\32\jdk1.8.0_31\jre\lib\ext\dnsns.jar;C:\JAVA\32\jdk1.8.0_31\jre\lib\ext\jaccess.jar;C:\JAVA\32\jdk1.8.0_31\jre\lib\ext\jfxrt.jar;C:\JAVA\32\jdk1.8.0_31\jre\lib\ext\localedata.jar;C:\JAVA\32\jdk1.8.0_31\jre\lib\ext\nashorn.jar;C:\JAVA\32\jdk1.8.0_31\jre\lib\ext\sunec.jar;C:\JAVA\32\jdk1.8.0_31\jre\lib\ext\sunjce_provider.jar;C:\JAVA\32\jdk1.8.0_31\jre\lib\ext\sunmscapi.jar;C:\JAVA\32\jdk1.8.0_31\jre\lib\ext\sunpkcs11.jar;C:\JAVA\32\jdk1.8.0_31\jre\lib\ext\zipfs.jar;C:\IdeaProjects\HHParser\target\classes;C:\Users\v.pozdeev\.m2\repository\org\mongodb\mongodb-driver\3.0.2\mongodb-driver-3.0.2.jar;C:\Users\v.pozdeev\.m2\repository\org\mongodb\bson\3.0.2\bson-3.0.2.jar;C:\Users\v.pozdeev\.m2\repository\org\mongodb\mongodb-driver-core\3.0.2\mongodb-driver-core-3.0.2.jar;C:\Users\v.pozdeev\.m2\repository\org\freemarker\freemarker\2.3.19\freemarker-2.3.19.jar;C:\Users\v.pozdeev\.m2\repository\com\sparkjava\spark-core\1.1.1\spark-core-1.1.1.jar;C:\Users\v.pozdeev\.m2\repository\org\slf4j\slf4j-api\1.7.2\slf4j-api-1.7.2.jar;C:\Users\v.pozdeev\.m2\repository\org\eclipse\jetty\jetty-server\9.0.2.v20130417\jetty-server-9.0.2.v20130417.jar;C:\Users\v.pozdeev\.m2\repository\org\eclipse\jetty\orbit\javax.servlet\3.0.0.v201112011016\javax.servlet-3.0.0.v201112011016.jar;C:\Users\v.pozdeev\.m2\repository\org\eclipse\jetty\jetty-http\9.0.2.v20130417\jetty-http-9.0.2.v20130417.jar;C:\Users\v.pozdeev\.m2\repository\org\eclipse\jetty\jetty-util\9.0.2.v20130417\jetty-util-9.0.2.v20130417.jar;C:\Users\v.pozdeev\.m2\repository\org\eclipse\jetty\jetty-io\9.0.2.v20130417\jetty-io-9.0.2.v20130417.jar;C:\Users\v.pozdeev\.m2\repository\org\eclipse\jetty\jetty-webapp\9.0.2.v20130417\jetty-webapp-9.0.2.v20130417.jar;C:\Users\v.pozdeev\.m2\repository\org\eclipse\jetty\jetty-xml\9.0.2.v20130417\jetty-xml-9.0.2.v20130417.jar;C:\Users\v.pozdeev\.m2\repository\org\eclipse\jetty\jetty-servlet\9.0.2.v20130417\jetty-servlet-9.0.2.v20130417.jar;C:\Users\v.pozdeev\.m2\repository\org\eclipse\jetty\jetty-security\9.0.2.v20130417\jetty-security-9.0.2.v20130417.jar;C:\Users\v.pozdeev\.m2\repository\oauth\signpost\signpost-core\1.2.1.1\signpost-core-1.2.1.1.jar;C:\Users\v.pozdeev\.m2\repository\commons-codec\commons-codec\1.3\commons-codec-1.3.jar;C:\Users\v.pozdeev\.m2\repository\com\googlecode\linkedin-j\linkedin-j-examples\1.0.416\linkedin-j-examples-1.0.416.jar;C:\Users\v.pozdeev\.m2\repository\com\googlecode\linkedin-j\linkedin-j-core\1.0.416\linkedin-j-core-1.0.416.jar;C:\Users\v.pozdeev\.m2\repository\commons-cli\commons-cli\1.2\commons-cli-1.2.jar;C:\Users\v.pozdeev\.m2\repository\net\sf\kxml\kxml2\2.3.0\kxml2-2.3.0.jar;C:\Program Files (x86)\JetBrains\IntelliJ IDEA Community Edition 14.1.4\lib\idea_rt.jar" com.intellij.rt.execution.application.AppMain mongodb.TestDrive
+{
+  },
+      "jobPoster": {
+        "firstName": "Ariadna",
+        "headline": "Research & Recruitment | IT Jobs | IT Opportunities",
+        "id": "6ho99EnYxA",
+        "lastName": "P."
+      },
+      "jobPoster": {
+        "firstName": "Lamia",
+        "headline": "Executive Facilitation & Business Support Professional",
+        "id": "G5qp2uW2YJ",
+        "lastName": "M."
+      },
+      "jobPoster": {
+        "firstName": "Oksana",
+        "headline": "HR Business Partner at NetCracker",
+        "id": "IYSRFtm3ly",
+        "lastName": "Khomina"
+      },
+      "jobPoster": {
+        "firstName": "Russ",
+        "headline": "VP, Talent Management & Human Resources at Stibo Systems",
+        "id": "ZWoFwNpSbj",
+        "lastName": "S."
+      },
+
+
+        "jobPoster": {
+          "firstName": "Ariadna",
+          "headline": "Research & Recruitment | IT Jobs | IT Opportunities",
+          "id": "6ho99EnYxA",
+          "lastName": "P."
+        },
+        "jobPoster": {
+          "firstName": "Lamia",
+          "headline": "Executive Facilitation & Business Support Professional",
+          "id": "G5qp2uW2YJ",
+          "lastName": "M."
+        },
+        "jobPoster": {
+          "firstName": "Oksana",
+          "headline": "HR Business Partner at NetCracker",
+          "id": "IYSRFtm3ly",
+          "lastName": "Khomina"
+        },
+        "jobPoster": {
+          "firstName": "Russ",
+          "headline": "VP, Talent Management & Human Resources at Stibo Systems",
+          "id": "ZWoFwNpSbj",
+          "lastName": "S."
+        },
+*/

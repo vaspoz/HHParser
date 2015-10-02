@@ -12,7 +12,6 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
-import java.util.List;
 
 /**
  * Created by Василий on 26.09.2015.
@@ -37,6 +36,11 @@ public class HeadHunterAPI {
 
     public void getVacanciesAndSave(Mongo mainDatabase, String title, String country) {
 
+        boolean isExist = checkForAlreadyExistance(title, country);
+        if (isExist) {
+            return;
+        }
+
         HttpURLConnection httpCon = prepareConnection(title, country);
         BufferedReader reader = new BufferedReader(new InputStreamReader(getStreamFrom(httpCon)));
         String line;
@@ -47,9 +51,21 @@ public class HeadHunterAPI {
             throw new AssertionError("Could not read from stream!");
         }
 
-        Document document = Document.parse(line);
+        Document document = Document.parse(line)
+                .append("_title", title)
+                .append("_country", country);
         hhVacancies.insertDocument(document);
         hhVacancies.processAndSave(mainDatabase);
+
+    }
+
+    private boolean checkForAlreadyExistance(String title, String country) {
+
+        Document findBy = new Document()
+                .append("_title", title)
+                .append("_country", country);
+
+        return hhVacancies.findAll(findBy).size() != 0;
 
     }
 
