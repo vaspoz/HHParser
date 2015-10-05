@@ -21,8 +21,8 @@ import java.util.List;
 public class HeadHunterAPI {
 
     private static final Logger log = LoggerFactory.getLogger(HeadHunterAPI.class);
-
     private Mongo hhVacancies;
+
 
     private HeadHunterAPI() {
         hhVacancies = Mongo.initiateDB("headhunter");
@@ -72,6 +72,7 @@ public class HeadHunterAPI {
         hhVacancies.processAndSave(mainDatabase);
 
     }
+
 
     private boolean checkForAlreadyExistance(String title, String country) {
 
