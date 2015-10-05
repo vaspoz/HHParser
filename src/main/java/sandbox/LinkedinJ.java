@@ -1,4 +1,4 @@
-package mongodb;
+package sandbox;
 
 import com.google.code.linkedinapi.client.JobsApiClient;
 import com.google.code.linkedinapi.client.LinkedInApiClient;

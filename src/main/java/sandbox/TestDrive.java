@@ -1,4 +1,4 @@
-package mongodb;
+package sandbox;
 
 import com.mongodb.client.MongoCursor;
 import org.bson.Document;
