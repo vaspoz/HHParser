@@ -67,6 +67,11 @@ public class SearcherController {
                 String title = request.queryParams("title");
                 String country = request.queryParams("country");
 
+                String clearDB = request.queryParams("clearDBase");
+                if (clearDB != null) {
+                    db.clearDatabases();
+                }
+
                 db.collectDBfor(title, country);
 
                 response.redirect("/results");

@@ -25,6 +25,15 @@ public class LocalDatabase {
     }
 
 
+    @Deprecated
+    public void clearDatabases() {
+
+        vacancies.clearDBase();
+        hhAPI.clearDBase();
+
+    }
+
+
     public List<Document> getCollectedVacancies() {
 
         return vacancies.returnAll();

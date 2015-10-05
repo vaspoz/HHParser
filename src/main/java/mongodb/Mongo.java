@@ -62,6 +62,13 @@ public class Mongo {
     }
 
 
+    public void clearDBase() {
+
+        db.drop();
+
+    }
+
+
     public void processAndSave(Mongo db) {
 
         Document unwind = new Document()

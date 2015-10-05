@@ -12,6 +12,8 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
+import java.util.Date;
+import java.util.List;
 
 /**
  * Created by Василий on 26.09.2015.
@@ -34,12 +36,23 @@ public class HeadHunterAPI {
     }
 
 
+    public void clearDBase() {
+
+        hhVacancies.clearDBase();
+
+    }
+
+
     public void getVacanciesAndSave(Mongo mainDatabase, String title, String country) {
 
         boolean isExist = checkForAlreadyExistance(title, country);
         if (isExist) {
-            return;
+            boolean isObsolete = checkForObsolete(title, country);
+            if (!isObsolete) {
+                return;
+            }
         }
+
 
         HttpURLConnection httpCon = prepareConnection(title, country);
         BufferedReader reader = new BufferedReader(new InputStreamReader(getStreamFrom(httpCon)));
@@ -53,7 +66,8 @@ public class HeadHunterAPI {
 
         Document document = Document.parse(line)
                 .append("_title", title)
-                .append("_country", country);
+                .append("_country", country)
+                .append("_create", new Date());
         hhVacancies.insertDocument(document);
         hhVacancies.processAndSave(mainDatabase);
 
@@ -67,6 +81,35 @@ public class HeadHunterAPI {
 
         return hhVacancies.findAll(findBy).size() != 0;
 
+    }
+
+
+    private boolean checkForObsolete(String title, String country) {
+
+        Date currentDate = new Date();
+        Document findBy = new Document()
+                .append("_title", title)
+                .append("_country", country);
+
+        List<Document> allRecords = hhVacancies.findAll(findBy);
+        if (allRecords.isEmpty()) {
+            return false;
+        }
+
+        Document possibleObsoleteRecord = allRecords.get(0);
+        Date dateFromRecord = possibleObsoleteRecord.getDate("_create");
+
+        long deltaMilliseconds = currentDate.getTime() - dateFromRecord.getTime();
+        long seconds = deltaMilliseconds/1000;
+        long minutes = seconds / 60;
+        long hours = minutes / 60;
+        long days = hours / 24;
+
+        if (days > 3) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
 
