@@ -4,6 +4,8 @@
     <resourceExtensions />
     <wildcardResourcePatterns>
       <entry name="!?*.java" />
+
+
       <entry name="!?*.form" />
       <entry name="!?*.class" />
       <entry name="!?*.groovy" />
