@@ -78,7 +78,6 @@ public class SearcherController {
             }
         });
 
-
         get(new FreemarkerBaseRoutes("/results", "results-template.html") {
             @Override
             protected void doHandle(Request request, Response response, Writer writer) throws IOException, TemplateException {

@@ -4,8 +4,6 @@
     <resourceExtensions />
     <wildcardResourcePatterns>
       <entry name="!?*.java" />
-
-
       <entry name="!?*.form" />
       <entry name="!?*.class" />
       <entry name="!?*.groovy" />
@@ -31,11 +29,32 @@
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
       </profile>
+      <profile default="false" name="Annotation profile for Springed" enabled="true">
+        <sourceOutputDir name="target\generated-sources\annotations" />
+        <sourceTestOutputDir name="target\generated-test-sources\test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+      </profile>
+      <profile default="false" name="Annotation profile for untitled" enabled="true">
+        <sourceOutputDir name="target\generated-sources\annotations" />
+        <sourceTestOutputDir name="target\generated-test-sources\test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+      </profile>
+      <profile default="false" name="Annotation profile for qwe" enabled="true">
+        <sourceOutputDir name="target\generated-sources\annotations" />
+        <sourceTestOutputDir name="target\generated-test-sources\test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+      </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="1.8">
       <module name="HHParser" target="1.7" />
       <module name="LinkedinJ" target="1.7" />
+      <module name="qwe" target="1.7" />
       <module name="Spring" target="1.7" />
+      <module name="Springed" target="1.7" />
+      <module name="untitled" target="1.7" />
     </bytecodeTargetLevel>
   </component>
 </project>
