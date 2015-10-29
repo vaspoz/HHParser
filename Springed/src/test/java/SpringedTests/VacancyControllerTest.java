@@ -25,6 +25,23 @@ public class VacancyControllerTest {
 
 
     @Test
+    public void shouldShowVacancyByID() throws Exception {
+
+        Vacancy expectedVacancy = new Vacancy("DevOps", "Australia");
+        VacancyRepository mockRepository = mock(VacancyRepository.class);
+        when(mockRepository.findOne(11135)).thenReturn(expectedVacancy);
+
+        VacancyController controller = new VacancyController(mockRepository);
+        MockMvc mockMvc = standaloneSetup(controller).build();
+
+        mockMvc.perform(get("/vacancies/show")
+                            .param("vacancy_id", "11135"))
+                .andExpect(view().name("vacancy"))
+                .andExpect(model().attribute("vacancy", expectedVacancy));
+
+    }
+
+    @Test
     public void shouldShowRecentVacancies() throws Exception {
 
         List<Vacancy> expectedVacancies = createVacancyList(20);

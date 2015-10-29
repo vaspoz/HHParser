@@ -9,7 +9,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.*;
  * Created by v.pozdeev on 28.10.2015.
  */
 @Controller
-@RequestMapping({"/", "/homepage"})
+@RequestMapping("/")
 public class HomeController {
 
 

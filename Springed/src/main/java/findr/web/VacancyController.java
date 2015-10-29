@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.List;
-
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
 /**
@@ -32,13 +30,15 @@ public class VacancyController {
 
 
     @RequestMapping(method = GET)
-    public List<Vacancy> vacancy(
+    public String vacancy(
             @RequestParam(defaultValue = "Vacancy") String title,
             @RequestParam(defaultValue = "Country") String country,
-            @RequestParam(defaultValue = "20") long count
+            @RequestParam(defaultValue = "20") long count,
+            Model model
     ) {
 
-        return vacancyRepository.findVacancies(title, country, count);
+        model.addAttribute("vacancyList", vacancyRepository.findVacancies(title, country, count));
+        return "vacancies";
 
     }
 
@@ -48,7 +48,7 @@ public class VacancyController {
             @RequestParam("vacancy_id") long id,
             Model model) {
 
-        model.addAttribute(vacancyRepository.findOne(id));
+        model.addAttribute("vacancy", vacancyRepository.findOne(id));
         return "vacancy";
 
     }
