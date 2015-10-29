@@ -38,7 +38,7 @@ public class VacancyControllerTest {
 
         MockMvc mockMvc = standaloneSetup(controller)
                 .setSingleView(
-                        new InternalResourceView("/WEB-INF/views/vacancies.jsp"))
+                        new InternalResourceView("/src/main/webapp/views/vacancies.jsp"))
                 .build();
 
         mockMvc.perform(get("/vacancies"))
@@ -60,7 +60,7 @@ public class VacancyControllerTest {
         VacancyController controller = new VacancyController(mockRepository);
         MockMvc mockMvc = standaloneSetup(controller)
                 .setSingleView(
-                        new InternalResourceView("/WEB-INF/views/vacancies.jsp")
+                        new InternalResourceView("/src/main/webapp/views/vacancies.jsp")
                 )
                 .build();
 
