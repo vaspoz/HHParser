@@ -33,35 +33,11 @@ public class VacancyController {
 
     @RequestMapping(method = GET)
     public List<Vacancy> vacancy(
-            @RequestParam(defaultValue = "Vacancy") String title,
-            @RequestParam(defaultValue = "Country") String country,
-            @RequestParam(defaultValue = "20") long count
+            @RequestParam String title,
+            @RequestParam String country
     ) {
 
-        return vacancyRepository.findVacancies(title, country, count);
-
-    }
-
-
-    @RequestMapping(value = "/show", method = GET)
-    public String showVacancy(
-            @RequestParam("vacancy_id") long id,
-            Model model) {
-
-        model.addAttribute(vacancyRepository.findOne(id));
-        return "vacancy";
-
-    }
-
-
-    @RequestMapping(value = "/{vacancyId}", method = GET)
-    public String vacancy(
-            @PathVariable long vacancyId,
-            Model model) throws Exception{
-
-        Vacancy vacancy = vacancyRepository.findOne(vacancyId);
-        model.addAttribute("vacancy", vacancy);
-        return "vacancy";
+        return vacancyRepository.findVacancies(title, country);
 
     }
 }

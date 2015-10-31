@@ -25,8 +25,7 @@ public class SearcherController {
     @RequestMapping(method = POST)
     public String searchProcessing(
             @ModelAttribute("title") String title,
-            @ModelAttribute("country") String country,
-            @ModelAttribute("count") String count)
+            @ModelAttribute("country") String country)
     {
 
         return "redirect:/vacancies";

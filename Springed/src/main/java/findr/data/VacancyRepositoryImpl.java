@@ -12,12 +12,8 @@ import java.util.List;
 public class VacancyRepositoryImpl implements VacancyRepository {
 
     @Override
-    public List<Vacancy> findVacancies(String title, String country, long count) {
+    public List<Vacancy> findVacancies(String title, String country) {
         return null;
     }
 
-    @Override
-    public Vacancy findOne(long id) {
-        return null;
-    }
 }

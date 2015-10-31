@@ -6,6 +6,6 @@
 </head>
 <body>
 <h1>Welcome to Findr</h1>
-<a href="<c:url value="/search" />">Search form</a> |
+<a href="<c:url value="/search" />">Search form</a>
 </body>
 </html>
