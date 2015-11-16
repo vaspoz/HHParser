@@ -1,6 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
-<html>
+<%@ page session="true" %>
+<!DOCTYPE html>
+<html lang="en">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,10 +11,10 @@
     <title>Job searcher</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="resources/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="/css/signin.css" rel="stylesheet">
+    <link href="resources/css/signin.css" rel="stylesheet">
 
   </head>
 
@@ -23,20 +24,17 @@
 
       <form class="form-signin" method="post">
         <h2 class="form-signin-heading">Enter query</h2>
-
         <label for="inputTitle" class="sr-only">Title</label>
         <input type="text" id="inputTitle" name="title" class="form-control" placeholder="Title" required autofocus>
-        <hr>
         <label for="inputCountry" class="sr-only">Country</label>
         <input type="text" id="inputCountry" name="country" class="form-control" placeholder="Country" required>
-        <hr>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Search</button>
-        <input type="checkbox" name="clearDBase">Input (for test purposes only).
-        <hr>
-
       </form>
 
     </div> <!-- /container -->
+
+    ${title}
+    ${country}
 
   </body>
 </html>

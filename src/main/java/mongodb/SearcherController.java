@@ -49,7 +49,7 @@ public class SearcherController {
             }
         });
 
-        get(new FreemarkerBaseRoutes("/hello", "search_start.html") {
+        get(new FreemarkerBaseRoutes("/hello", "searchForm.html") {
             @Override
             protected void doHandle(Request request, Response response, Writer writer) throws IOException, TemplateException {
                 SimpleHash root = new SimpleHash();
@@ -61,7 +61,7 @@ public class SearcherController {
             }
         });
 
-        post(new FreemarkerBaseRoutes("/hello", "search_start.html") {
+        post(new FreemarkerBaseRoutes("/hello", "searchForm.html") {
             @Override
             protected void doHandle(Request request, Response response, Writer writer) throws IOException, TemplateException {
                 String title = request.queryParams("title");
