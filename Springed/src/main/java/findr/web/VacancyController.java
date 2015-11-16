@@ -30,6 +30,7 @@ public class VacancyController {
 
 
     @RequestMapping(method = GET)
+<<<<<<< HEAD
     public String vacancy(
             @RequestParam(defaultValue = "Vacancy") String title,
             @RequestParam(defaultValue = "Country") String country,
@@ -62,6 +63,14 @@ public class VacancyController {
         Vacancy vacancy = vacancyRepository.findOne(vacancyId);
         model.addAttribute("vacancy", vacancy);
         return "vacancy";
+=======
+    public List<Vacancy> vacancy(
+            @RequestParam String title,
+            @RequestParam String country
+    ) {
+
+        return vacancyRepository.findVacancies(title, country);
+>>>>>>> origin/master
 
     }
 }
