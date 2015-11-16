@@ -2,12 +2,9 @@ package mongodb.DAO;
 
 import java.util.List;
 
-public class VacancyService {
-    public List<VacancyDAO> getAll() {
-        return null;
-    }
+public interface VacancyService {
 
-    public void add(VacancyDAO vacancy) {
+    void updateDB();
+    List<Vacancy> getVacanciesFor(String title, String country);
 
-    }
 }
