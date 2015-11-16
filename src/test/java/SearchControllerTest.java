@@ -36,7 +36,7 @@ public class SearchControllerTest {
 
         mockMvc.perform(post("/").param("title", "TITLE").param("country", "COUNTRY"))
                 .andExpect(view().name("searchForm"))
-                .andExpect(model().attribute("title", "374"))
+                .andExpect(model().attribute("title", "TITLE"))
                 .andDo(MockMvcResultHandlers.print());
 
 

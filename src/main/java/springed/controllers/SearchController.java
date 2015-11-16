@@ -29,8 +29,9 @@ public class SearchController {
     @RequestMapping(value = "/", method = RequestMethod.POST)
     public String startSearch(SearchParameters params, Model model) {
 
-        long collectionCount = vacancyService.getCollectionCount();
-        model.addAttribute("title", (collectionCount + 100) + "!");
+//        Do not use this if you have not running "mongod" process on your localhost
+//        long collectionCount = vacancyService.getCollectionCount();
+        model.addAttribute("title", params.getTitle());
         return "searchForm";
 
     }
