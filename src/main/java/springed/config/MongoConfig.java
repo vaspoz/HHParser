@@ -1,5 +1,6 @@
 package springed.config;
 
+import com.mongodb.DBCollection;
 import com.mongodb.Mongo;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,8 +13,9 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
  * Created by v.pozdeev on 16.11.2015.
  */
 @Configuration
-@EnableMongoRepositories(basePackages = "db")
+@EnableMongoRepositories(basePackages = "springed.db.repository")
 public class MongoConfig {
+
 
     @Bean
     public MongoFactoryBean mongo() {
@@ -29,5 +31,14 @@ public class MongoConfig {
     public MongoOperations mongoTemplate(Mongo mongo) {
 
         return new MongoTemplate(mongo, "vacancies");
+
+    }
+
+
+    @Bean
+    public DBCollection collection(MongoOperations operations) {
+
+        return operations.getCollection("vacancies");
+
     }
 }
