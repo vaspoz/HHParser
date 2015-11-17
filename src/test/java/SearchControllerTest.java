@@ -6,6 +6,7 @@ import springed.controllers.SearchController;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standaloneSetup;
 
@@ -35,8 +36,9 @@ public class SearchControllerTest {
         MockMvc mockMvc = standaloneSetup(controller).build();
 
         mockMvc.perform(post("/").param("title", "TITLE").param("country", "COUNTRY"))
-                .andExpect(view().name("searchForm"))
+                .andExpect(redirectedUrl("/vacancies?title=TITLE&country=COUNTRY"))
                 .andExpect(model().attribute("title", "TITLE"))
+                .andExpect(model().attribute("country", "COUNTRY"))
                 .andDo(MockMvcResultHandlers.print());
 
 
