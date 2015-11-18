@@ -35,10 +35,4 @@ public class MongoConfig {
     }
 
 
-    @Bean
-    public DBCollection collection(MongoOperations operations) {
-
-        return operations.getCollection("vacancies");
-
-    }
 }
