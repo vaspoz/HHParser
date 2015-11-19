@@ -16,17 +16,16 @@
     <link href="resources/css/signin.css" rel="stylesheet">
 
 </head>
-<h1>Amount of vacancies:</h1>
-<h2>${count}</h2>
 
 <c:forEach var="vacancy" items="${vacancyList}">
     <div class="raw">
-        <div class="col-sm-4">
             <div class="panel panel-success">
                 <div class="panel-heading">
                     <h3 class="panel-title">
                         <strong>
-                            <c:out value="${vacancy.title}"/>
+                            <a href=<c:out value="vacancy/${vacancy.id}"/>>
+                                <c:out value="${vacancy.title}"/>
+                            </a>
                         </strong>
                     </h3>
                 </div>
@@ -45,7 +44,6 @@
 
                 </div>
             </div>
-        </div>
     </div>
 </c:forEach>
 
