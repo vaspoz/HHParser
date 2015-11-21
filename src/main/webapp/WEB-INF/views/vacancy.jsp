@@ -22,7 +22,7 @@
 <hr>
 
 <h2>Description</h2>
-<c:out value="${description}"/>
+<c:out value="${description}" escapeXml="false"/>
 
 
 </body>

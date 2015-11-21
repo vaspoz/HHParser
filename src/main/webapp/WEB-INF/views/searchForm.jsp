@@ -33,8 +33,7 @@
 
     </div> <!-- /container -->
 
-    ${title}
-    ${country}
+
 
   </body>
 </html>
