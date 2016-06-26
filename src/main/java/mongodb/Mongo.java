@@ -20,6 +20,7 @@ import static java.util.Arrays.asList;
  */
 public class Mongo {
 
+
     private MongoClient client;
     private MongoDatabase db;
     private MongoCollection<Document> collection;
